@@ -1,7 +1,7 @@
 
 import React from 'react';
 import {Route, BrowserRouter, Redirect, Switch} from 'react-router-dom';
-
+import './App.css';
 // import Fish from '../components/Fish/Fish';
 import Home from '../components/Home/Home';
 import Inventory from '../components/Inventory/Inventory';
@@ -12,8 +12,8 @@ import Navbar from '../components/Navbar/Navbar';
 // import OrderSpa from '../components/OrderSpa/OrderSpa';
 import Register from '../components/Register/Register';
 // import SingleOrder from '../components/SingleOrder/SingleOrder';
-
-import './App.css';
+import fbConnection from '../firebaseRequests/connection';
+fbConnection();
 
 const PrivateRoute = ({ component: Component, authed, ...rest}) => {
   return (
