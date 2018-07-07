@@ -4,6 +4,7 @@ import './Navbar.css';
 
 class Navbar extends React.Component {
   render () {
+    const {authed} = this.props;
     return (
       <div className="Navbar">
         <nav className="navbar navbar-inverse">
@@ -17,13 +18,26 @@ class Navbar extends React.Component {
               </button>
               <Link to="/" className="navbar-brand">Fish Store</Link>
             </div>
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div className="collapse navbar-collapse">
+              {
+                authed ? (
+                  <ul className="nav navbar-nav navbar-right">
+                    <li>
+                      <Link to="/inventory" className="navbar-brand">Inventory</Link>
+                    </li>
+                    <li>
+                      <Link to="/orders" className="navbar-brand">Orders</Link>
+                    </li>
+                  </ul>
+                ) : (
+                  <ul className="nav navbar-nav navbar-right">
+                    <li>
+                      <Link to="/login" className="navbar-brand">Login</Link>
+                    </li>
+                  </ul>
+                )
+              }
 
-              <ul className="nav navbar-nav navbar-right">
-                <li>
-                  <Link to="/login" className="navbar-brand">Login</Link>
-                </li>
-              </ul>
             </div>
           </div>
         </nav>
