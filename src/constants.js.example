@@ -1,0 +1,13 @@
+const constants = {
+  firebaseConfig: {
+    apiKey: '',
+    authDomain: '',
+    databaseURL: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: '',
+  },
+  // weatherConfig: {},
+};
+
+export default constants;
