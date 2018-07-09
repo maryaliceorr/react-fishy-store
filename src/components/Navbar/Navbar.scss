@@ -1,4 +1,11 @@
+.navbar {
+  .container {
+    width: 100%;
+  }
 
-.Navbar {
-  background-color: lightblue;
+  .navbar-nav span[role=button] {
+    padding: 15px;
+    display: inline-block;
+    line-height: 20px;
+  }
 }
