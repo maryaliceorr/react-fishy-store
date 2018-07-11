@@ -4,6 +4,8 @@ import Fish from '../Fish/Fish';
 import Order from '../Order/Order';
 
 import fishRequests from '../../firebaseRequests/fishes';
+import authRequests from '../../firebaseRequests/auth';
+import orderRequests from '../../firebaseRequests/orders';
 
 import './New.css';
 
@@ -26,7 +28,17 @@ class New extends React.Component {
   }
 
   saveNewOrder = () => {
-
+    const newOrder = {fishes: {...this.state.order}};
+    newOrder.uid = authRequests.getUid();
+    newOrder.dateTime = Date.now();
+    orderRequests
+      .postRequest(newOrder)
+      .then(() => {
+        this.props.history.push('/orders');
+      })
+      .catch((err) => {
+        console.error('error with save new order', err);
+      })
   }
 
   componentDidMount () {
