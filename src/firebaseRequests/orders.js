@@ -32,7 +32,21 @@ const postRequest = (newOrder) => {
         reject(err);
       })
 
-  })
-}
+  });
+};
 
-export default { getRequest, postRequest };
+const deleteRequest = (orderId) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`${constants.firebaseConfig.databaseURL}/orders/${orderId}.json`)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      })
+
+  });
+};
+
+export default { getRequest, postRequest, deleteRequest };
