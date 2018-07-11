@@ -14,29 +14,28 @@ class Inventory extends React.Component {
     fishRequests
       .getRequest()
       .then((fishes) => {
-        this.setState({fishes: fishes});
-        // could also do ({fishes})
+        this.setState({fishes});
       })
       .catch((err) => {
         console.error('error with fish get request', err);
-      })
+      });
   }
+
   render () {
     const fishComponents = this.state.fishes.map((fish) => {
       return (
-      <Fish
-        key={fish.id}
-        details={fish}
-      />
+        <Fish
+          key={fish.id}
+          details={fish}
+        />
       );
     });
     return (
-      <div className="Inventory">
-        <h2>Inventory</h2>
+      <div className="Inventory col-xs-12">
+        <h1>Inventory</h1>
         <ul className="fishes">
           {fishComponents}
         </ul>
-
       </div>
     );
   }
