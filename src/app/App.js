@@ -1,7 +1,7 @@
-
 import React from 'react';
-import {Route, BrowserRouter, Redirect, Switch} from 'react-router-dom';
+import {Route, BrowserRouter, Redirect, Switch}  from 'react-router-dom';
 import firebase from 'firebase';
+
 import './App.css';
 
 import Home from '../components/Home/Home';
@@ -50,76 +50,76 @@ const PublicRoute = ({ component: Component, authed, ...rest}) => {
 };
 
 class App extends React.Component {
-state = {
-  authed: false,
-}
+  state={
+    authed: false,
+  }
 
-componentDidMount () {
-  this.removeListener = firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      this.setState({authed: true});
-    } else {
-      this.setState({authed: false});
-    }
-  })
-}
+  componentDidMount () {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({authed: true});
+      } else {
+        this.setState({authed: false});
+      }
+    });
+  }
 
-componentWillUnmount () {
-  this.removeListener();
-}
+  componentWillUnmount () {
+    this.removeListener();
+  }
 
-runaway = () => {
-  this.setState({authed:false});
-}
+  runAway = () => {
+    this.setState({authed: false});
+  }
 
   render () {
     return (
-      <div className="App text-center">
-      <BrowserRouter>
-      <div>
-        <Navbar
-          authed={this.state.authed}
-          runaway={this.runaway}
-        />
-        <div className="container">
-          <div className="row">
-            <Switch>
-              <Route path="/" exact component={Home}/>
-              <PrivateRoute
-                path="/inventory"
-                authed={this.state.authed}
-                component={Inventory}
-              />
-              <PublicRoute
-                path="/register"
-                authed={this.state.authed}
-                component={Register}
-              />
-              <PublicRoute
-                path="/login"
-                authed={this.state.authed}
-                component={Login}
-              />
-               <PrivateRoute
-                path="/orders"
-                authed={this.state.authed}
-                component={OrderSpa}
-              />
-              <PrivateRoute
-                path="/order/:id"
-                authed={this.state.authed}
-                component={SingleOrder}
-              />
-              <PrivateRoute
-                path="/new"
-                authed={this.state.authed}
-                component={New}
-              />
-            </Switch>
+      <div className="App">
+        <BrowserRouter>
+          <div>
+            <Navbar
+              authed={this.state.authed}
+              runAway={this.runAway}
+            />
+            <div className="container">
+              <div className="row">
+                <Switch>
+                  <Route path="/" exact component={Home}/>
+                  <PrivateRoute
+                    path="/inventory"
+                    authed={this.state.authed}
+                    component={Inventory}
+                  />
+                  <PublicRoute
+                    path="/register"
+                    authed={this.state.authed}
+                    component={Register}
+                  />
+                  <PublicRoute
+                    path="/login"
+                    authed={this.state.authed}
+                    component={Login}
+                  />
+                  <PrivateRoute
+                    path="/orders"
+                    authed={this.state.authed}
+                    component={OrderSpa}
+                  />
+                  <PrivateRoute
+                    path="/order/:id"
+                    authed={this.state.authed}
+                    component={SingleOrder}
+                  />
+                  <PrivateRoute
+                    path="/new"
+                    authed={this.state.authed}
+                    component={New}
+                  />
+                </Switch>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      </BrowserRouter>
+        </BrowserRouter>
       </div>
     );
   }

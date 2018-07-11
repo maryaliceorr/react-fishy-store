@@ -20,4 +20,5 @@ const getRequest = () => {
       });
   });
 };
-export default {getRequest};
+
+export default { getRequest };
